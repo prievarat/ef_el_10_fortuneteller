@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madame Yolanda's Fortunes - English File 10C Speaking Lab</title>
+
+  <!-- Google Fonts: Inter & Nunito as specified in Design Brief[cite: 1] -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN BRIEF TOKENS & CSS VARIABLES[cite: 1]
+       Warm, school-friendly palette; accessible contrast; no harsh neon[cite: 1]
+       ========================================================================== */
+    :root {
+      --primary-300: #F9C97A;
+      --primary-500: #F4A329;
+      --primary-700: #B45309;
+
+      --secondary-300: #7EDAD6;
+      --secondary-500: #2BB6B4;
+      --secondary-700: #0F766E;
+
+      --accent-300: #F49DB8;
+      --accent-500: #E8467B;
+      --accent-700: #A61E4D;
+
+      --bg: #FFF7F2;
+      --surface: #FFFFFF;
+      --surface-alt: #F5F7FA;
+      --border: #E6E9EF;
+
+      --text: #1F2937;
+      --text-2: #4B5563;
+      --text-muted: #6B7280;
+      --text-inverse: #FFFFFF;
+
+      --success: #2F9E44;
+      --warning: #F59F00;
+      --error: #D92D20;
+      --info: #2563EB;
+
+      --font-main: "Inter", "Nunito", system-ui, -apple-system, sans-serif;
+      --radius-card: 16px;
+      --radius-pill: 9999px;
+      --shadow-card: 0 4px 14px rgba(17, 24, 39, 0.08);
+      --transition: 180ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* --- Header & Classroom Controls --- */
+    header.card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 820px) {
+      header.card {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary-700);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-subtitle {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-top: 3px;
+    }
+
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-alt);
+      border: 1px solid var(--secondary-300);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--secondary-700);
+    }
+
+    /* --- Buttons --- */
+    button {
+      font-family: var(--font-main);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-700);
+      color: var(--text-inverse);
+      border: 2px solid var(--primary-700);
+    }
+    .btn-primary:hover {
+      filter: brightness(95%);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary-700);
+      border: 2px solid var(--primary-300);
+    }
+    .btn-secondary:hover {
+      background-color: rgba(249, 201, 122, 0.24);
+    }
+
+    .btn-teal {
+      background-color: var(--secondary-700);
+      color: var(--text-inverse);
+    }
+    .btn-teal:hover {
+      filter: brightness(95%);
+    }
+
+    /* --- Category Section (9 Diverse Categories) --- */
+    .category-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+    }
+
+    .section-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-lead {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .cat-btn {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 15px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .cat-btn:hover {
+      border-color: var(--secondary-500);
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(43, 182, 180, 0.15);
+    }
+
+    .cat-btn.active {
+      border-color: var(--secondary-700);
+      background: rgba(126, 218, 214, 0.22);
+      font-weight: 700;
+      color: var(--secondary-700);
+      outline: 2px solid var(--secondary-500);
+    }
+
+    .cat-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* --- Three Fate Cards Spread --- */
+    .spread-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 860px) {
+      .spread-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card-slot {
+      perspective: 1000px;
+      min-height: 470px;
+    }
+
+    .tarot-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .tarot-card.flipped {
+      transform: rotateY(180deg);
+      cursor: default;
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Face: Back (Unrevealed Fate) */
+    .card-back {
+      background: linear-gradient(145deg, #FFF0E5, #FDE6D7);
+      border: 2px dashed var(--primary-300);
+      padding: 24px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-back:hover {
+      border-color: var(--primary-500);
+      transform: scale(1.01);
+    }
+
+    .mystic-symbol {
+      width: 84px;
+      height: 84px;
+      border-radius: var(--radius-pill);
+      background: rgba(244, 163, 41, 0.15);
+      border: 2px solid var(--primary-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--primary-700);
+      animation: pulseOrb 3.2s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseOrb {
+      0% { transform: scale(0.96); box-shadow: 0 0 0 rgba(244,163,41,0.2); }
+      100% { transform: scale(1.04); box-shadow: 0 0 18px rgba(244,163,41,0.35); }
+    }
+
+    .slot-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary-700);
+      margin-bottom: 4px;
+    }
+
+    .tap-instruction {
+      font-size: 13.5px;
+      color: var(--text-2);
+      margin-top: 8px;
+    }
+
+    /* Face: Front (Revealed Prediction & Explanation) */
+    .card-front {
+      background: var(--surface);
+      transform: rotateY(180deg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Tone Styling: Positive vs Negative */
+    .card-front.tone-positive {
+      border-top: 6px solid var(--success);
+    }
+    .card-front.tone-negative {
+      border-top: 6px solid var(--error);
+    }
+
+    .front-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .step-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--surface-alt);
+      color: var(--text-muted);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .tone-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-positive {
+      background: rgba(47, 158, 68, 0.12);
+      color: var(--success);
+      border: 1px solid rgba(47, 158, 68, 0.3);
+    }
+    .badge-negative {
+      background: rgba(217, 45, 32, 0.12);
+      color: var(--error);
+      border: 1px solid rgba(217, 45, 32, 0.3);
+    }
+
+    .icon-hero {
+      width: 54px;
+      height: 54px;
+      margin: 2px auto 8px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-hero.positive {
+      background: rgba(47, 158, 68, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(47, 158, 68, 0.25);
+    }
+    .icon-hero.negative {
+      background: rgba(217, 45, 32, 0.1);
+      color: var(--error);
+      border: 1px solid rgba(217, 45, 32, 0.25);
+    }
+
+    .card-keyphrase {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .prediction-bubble {
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .prediction-bubble.positive {
+      background: #F4FAF5;
+      border-left: 4px solid var(--success);
+      color: #1A6428;
+    }
+    .prediction-bubble.negative {
+      background: #FEF3F2;
+      border-left: 4px solid var(--error);
+      color: #912018;
+    }
+
+    .explanation-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.45;
+      flex-grow: 1;
+      margin-bottom: 12px;
+    }
+
+    .explanation-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .speech-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: var(--radius-pill);
+    }
+    .speech-btn:hover {
+      background: var(--surface-alt);
+      border-color: var(--secondary-500);
+      color: var(--secondary-700);
+    }
+
+    /* --- Interactive Pairwork Speaking Scaffolding Box --- */
+    .pairwork-card {
+      background: var(--surface);
+      border: 2px solid var(--secondary-300);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: 20px 24px;
+    }
+
+    .pairwork-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 10px;
+    }
+
+    .pair-badge {
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--secondary-700);
+      color: var(--text-inverse);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .speaking-flow {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .speaking-flow {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .role-column {
+      background: var(--surface-alt);
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+    }
+
+    .role-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--secondary-700);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .role-speech-guide {
+      font-size: 14px;
+      color: var(--text-2);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .speech-prompt {
+      background: var(--surface);
+      padding: 8px 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--secondary-500);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .grammar-note {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* --- Controls Bar --- */
+    .controls-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- HEADER[cite: 1] -->
+  <header class="card">
+    <div>
+      <div class="brand-title">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+          <path d="M2 12h20"/>
+        </svg>
+        Madame Yolanda’s Parlor
+      </div>
+      <div class="brand-subtitle">English File Elementary 10C: Predictions with <strong>be going to</strong> (Positive &amp; Negative)[cite: 3]</div>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+      <div class="role-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Pairwork Speaking Task</span>
+      </div>
+      <button id="reset-all-btn" class="btn-secondary" title="Pick another topic or reshuffle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset / Next Topic
+      </button>
+    </div>
+  </header>
+
+  <!-- STEP 1: CATEGORY SELECTION (9 Curriculum Topics)[cite: 1] -->
+  <section class="category-section" id="category-selector-card">
+    <div class="section-heading">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-700)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Step 1: The Seeker Chooses a Life Topic
+    </div>
+    <p class="section-lead">Student B (The Seeker) chooses what aspect of their destiny Madame Yolanda should read:</p>
+
+    <div class="category-grid" id="category-grid">
+      <!-- 9 Dynamic Categories Injected by JS -->
+    </div>
+  </section>
+
+  <!-- STEP 2: THREE-CARD SPREAD -->
+  <section>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+      <h2 style="font-size: 20px; font-weight: 700; color: var(--text);">
+        Step 2: Turn Over the 3 Fate Cards
+      </h2>
+      <span style="font-size: 14px; font-weight: 600; color: var(--primary-700);" id="current-category-name">
+        Topic: Love &amp; Romance
+      </span>
+    </div>
+
+    <div class="spread-container">
+
+      <!-- Card Slot 1 -->
+      <div class="card-slot">
+        <div class="tarot-card" id="card-0" onclick="flipCard(0)">
+          <div class="card-face card-back">
+            <div class="mystic-symbol">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15 9 22 12 15 15 12 22 9 15 2 12 9 9 12 2"/></svg>
+            </div>
+            <div class="slot-label">Card 1: Present Situation</div>
+            <p class="tap-instruction">Click / Tap to Reveal</p>
+          </div>
+          <div class="card-face card-front" id="front-0">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Slot 2 -->
+      <div class="card-slot">
+        <div class="tarot-card" id="card-1" onclick="flipCard(1)">
+          <div class="card-face card-back">
+            <div class="mystic-symbol">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            </div>
+            <div class="slot-label">Card 2: The Near Future</div>
+            <p class="tap-instruction">Click / Tap to Reveal</p>
+          </div>
+          <div class="card-face card-front" id="front-1">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Slot 3 -->
+      <div class="card-slot">
+        <div class="tarot-card" id="card-2" onclick="flipCard(2)">
+          <div class="card-face card-back">
+            <div class="mystic-symbol">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="slot-label">Card 3: The Big Destiny</div>
+            <p class="tap-instruction">Click / Tap to Reveal</p>
+          </div>
+          <div class="card-face card-front" id="front-2">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STEP 3: INTERACTIVE SPEAKING SCAFFOLDING BOX -->
+  <section class="pairwork-card" id="pairwork-box">
+    <div class="pairwork-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="pair-badge">Pairwork Speaking Guide</span>
+        <h3 style="font-size: 17px; font-weight: 700;">Explain the Fortunes to Each Other</h3>
+      </div>
+      <button class="btn-secondary" style="font-size: 13px; padding: 4px 14px;" onclick="swapRoleGuide()">
+        Swap Roles ⇄
+      </button>
+    </div>
+
+    <div class="speaking-flow">
+      <!-- Role A: The Fortune Teller -->
+      <div class="role-column">
+        <div class="role-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <span id="role-a-label">Student A: Madame Yolanda (Fortune Teller)</span>
+        </div>
+        <div class="role-speech-guide">
+          <p>Read the prediction and explain what it means using the explanation box:</p>
+          <div class="speech-prompt">"According to Card 1, you <strong>are going to</strong>..." / "You <strong>aren't going to</strong>..."[cite: 3]</div>
+          <div class="speech-prompt">"This means that..." (Explain the positive fortune or warning)</div>
+          <div class="speech-prompt">"Do you think this is going to happen in real life?"[cite: 3]</div>
+          <p class="grammar-note">Scaffolding: Remember to pronounce the rhythm on <em>going to</em> and explain the words clearly[cite: 3]!</p>
+        </div>
+      </div>
+
+      <!-- Role B: The Seeker -->
+      <div class="role-column">
+        <div class="role-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <span id="role-b-label">Student B: The Seeker</span>
+        </div>
+        <div class="role-speech-guide">
+          <p>React to the good or bad fortune and explain your reasons:</p>
+          <div class="speech-prompt">"I agree / I don't agree with you <strong>because</strong>..."[cite: 3, 4]</div>
+          <div class="speech-prompt">"I hope I am going to..." / "No way! I am not going to..."[cite: 3]</div>
+          <div class="speech-prompt">"Can you explain Card 2 again, please? What should I do?"[cite: 4]</div>
+          <p class="grammar-note">Scaffolding: Use connectors like <strong>because</strong>[cite: 3, 4], <strong>so</strong>, or <strong>although</strong>[cite: 4] to explain your reaction!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CONTROLS -->
+  <div class="controls-bar">
+    <button class="btn-teal" onclick="revealAllCards()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Reveal All 3 Cards
+    </button>
+    <button class="btn-primary" onclick="redealCurrentTopic()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+      Deal New Cards For This Topic
+    </button>
+  </div>
+
+</div>
+
+<!-- ==========================================================================
+     BALANCED DATABASE: POSITIVE & NEGATIVE PREDICTIONS WITH EXPLANATIONS[cite: 3, 4]
+     ========================================================================== -->
+<script>
+  const CATEGORIES = [
+    {
+      id: "love",
+      name: "Love & Romance",
+      emoji: "❤️",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8467B" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "fall in love",
+          prediction: "You are going to fall in love with a kind stranger.",
+          explanation: "What this means: Soon you will meet somebody new in an unexpected place. You will talk for hours, your heart will beat faster, and you will feel very happy.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "have an argument",
+          prediction: "You are going to have a silly argument with someone you like.",
+          explanation: "What this means: A misunderstanding is coming. You won't agree about a small plan. Don't shout; listen carefully and stay calm to solve it.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "meet somebody new",
+          prediction: "You are going to meet somebody with dark, attractive eyes.",
+          explanation: "What this means: A charming new person is going to start a conversation with you at a gathering. You will exchange phone numbers right away.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "not see your crush",
+          prediction: "You aren't going to see your crush this weekend.",
+          explanation: "What this means: The person you really like will be very busy with family or work commitments, so you will spend your Saturday without them.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "travel",
+      name: "Travel & Adventure",
+      emoji: "✈️",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "travel to another country",
+          prediction: "You are going to travel to a sunny foreign country.",
+          explanation: "What this means: Get your passport ready! You are going to board a plane, fly over the sea, and explore exciting historical places with good weather.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "miss your connection",
+          prediction: "You are going to miss your train or bus connection.",
+          explanation: "What this means: There will be unexpected road traffic or a delayed departure. You will have to wait on a windy platform for two hours.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/><line x1="4" y1="4" x2="20" y2="20"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "taste traditional food",
+          prediction: "You are going to taste delicious exotic food on your journey.",
+          explanation: "What this means: A generous local host will cook an unforgettable traditional dish for you. It will be the best meal of your trip.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "have bad weather",
+          prediction: "It is going to rain every single day of your holiday.",
+          explanation: "What this means: Grey clouds and heavy rain are going to follow you. You won't be able to sit outside on the beach or terrace without an umbrella.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/><line x1="8" y1="19" x2="8" y2="23"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="16" y1="19" x2="16" y2="23"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "career",
+      name: "Career & Future Job",
+      emoji: "💼",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "get a job offer",
+          prediction: "You are going to get an exciting job offer very soon.",
+          explanation: "What this means: A manager will recognize your natural skills and invite you to join their friendly team with a higher salary.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "work with a difficult colleague",
+          prediction: "You are going to work with a very bossy and difficult person.",
+          explanation: "What this means: Somebody in your office or group project is going to complain and give orders all day. You will need extra patience.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "lead a successful project",
+          prediction: "You are going to lead a very successful team project.",
+          explanation: "What this means: Your creative ideas will inspire everyone. People will listen to your instructions and your boss will be delighted.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "not get the promotion",
+          prediction: "You aren't going to get the promotion you wanted.",
+          explanation: "What this means: The management is going to choose an older candidate this time. You will have to wait for the next opportunity.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "studies",
+      name: "School & Studies",
+      emoji: "📚",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "pass an exam",
+          prediction: "You are going to pass your exam with top marks.",
+          explanation: "What this means: Your hard revision will pay off. You will know all the answers and your teacher will give you full points.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "forget your homework",
+          prediction: "You are going to forget your homework tomorrow morning.",
+          explanation: "What this means: You are going to complete the exercises tonight, but tomorrow you will leave your notebook sitting on your kitchen table!",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="9" y1="15" x2="15" y2="15"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "speak English with confidence",
+          prediction: "You are going to speak English with confidence in class.",
+          explanation: "What this means: You won't hesitate or feel shy. You will speak smoothly and use natural expressions without translating in your head.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "have a surprise test",
+          prediction: "The teacher is going to give you a surprise pop quiz.",
+          explanation: "What this means: At the start of the lesson, the teacher will say: 'Put your books away!' The questions are going to be very tricky.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/><line x1="12" y1="8" x2="12" y2="12"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "money",
+      name: "Money & Wealth",
+      emoji: "💰",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F9E44" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "receive unexpected cash",
+          prediction: "You are going to receive an unexpected gift of cash.",
+          explanation: "What this means: An older relative or competition will provide extra money. You will be able to buy a treat and save some too.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "waste your money",
+          prediction: "You are going to waste money on something completely useless.",
+          explanation: "What this means: You are going to order an expensive gadget online after seeing an advertisement, but you will only use it once.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><line x1="17" y1="5" x2="7" y2="19"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "find a bargain",
+          prediction: "You are going to find a bargain at half price in the sales.",
+          explanation: "What this means: You will walk into a clothes shop and find high-quality shoes or clothes with a massive discount.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "not have enough money",
+          prediction: "You aren't going to have enough money for your weekend trip.",
+          explanation: "What this means: Your wallet will be empty because of sudden bills. You will stay home and cook simple pasta instead of dining out.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "friends",
+      name: "Friends & Social Life",
+      emoji: "🤝",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2BB6B4" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "go to an unforgettable party",
+          prediction: "You are going to dance and celebrate with your best friends.",
+          explanation: "What this means: An energetic party with fantastic music and laughter. You will make wonderful memories and celebrate until late.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "cancel your plans",
+          prediction: "A close friend is going to cancel your plans at the last minute.",
+          explanation: "What this means: You will get ready on Friday night, but then your phone will buzz with an apology message saying they can't come.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "reconnect with an old friend",
+          prediction: "An old friend is going to send you a lovely message.",
+          explanation: "What this means: Someone from your past will think of you. You will chat about old school memories and plan to meet for coffee.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "hear a silly secret",
+          prediction: "Someone is going to tell a silly secret about you.",
+          explanation: "What this means: A classmate will talk too much and share private gossip. Don't be angry; it will soon be forgotten by everyone.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><line x1="2" y1="2" x2="22" y2="22"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "health",
+      name: "Health & Energy",
+      emoji: "🏃",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F9E44" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "feel full of energy",
+          prediction: "You are going to wake up feeling fresh and full of energy.",
+          explanation: "What this means: You are going to sleep deeply for 8 hours without waking up. You will feel active, happy, and ready for work.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "catch a nasty cold",
+          prediction: "You are going to catch a nasty cold and sneeze a lot.",
+          explanation: "What this means: Wear your scarf! You will need a box of tissues, hot lemon tea in bed, and plenty of rest to recover.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "win a sports match",
+          prediction: "You are going to score a goal or win your next sports match.",
+          explanation: "What this means: Your teamwork and determination will shine. Your friends will cheer and you will celebrate a proud victory.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "feel exhausted",
+          prediction: "You are going to feel exhausted by Wednesday afternoon.",
+          explanation: "What this means: Staring at screens and going to bed past midnight will make you yawn all day. Go to bed earlier tonight!",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "fame",
+      name: "Fame & Public Life",
+      emoji: "🌟",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F4A329" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "perform on stage",
+          prediction: "You are going to perform on stage and everyone will applaud.",
+          explanation: "What this means: You will share your talent in music, drama, or speaking. The audience will love your courage and cheer loudly.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "make a funny mistake",
+          prediction: "You are going to make a funny mistake in front of a big group.",
+          explanation: "What this means: You will drop your papers or pronounce a word strangely, making people giggle. Laugh along and don't worry!",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "win a certificate or medal",
+          prediction: "You are going to receive an official award for your talent.",
+          explanation: "What this means: Your hard work in writing, art, or school contests will be rewarded with a certificate you can put on your wall.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "get zero likes",
+          prediction: "Nobody is going to like your newest post online.",
+          explanation: "What this means: You are going to post a photo you think is amazing, but hours later it will still have zero comments. Real life is better!",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>`
+        }
+      ]
+    },
+    {
+      id: "surprises",
+      name: "Everyday Surprises",
+      emoji: "🎁",
+      svg: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8467B" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect width="20" height="5" x="2" y="7"/><line x1="12" y1="22" x2="12" y2="7"/></svg>`,
+      cards: [
+        {
+          type: "positive",
+          keyphrase: "find a lost item",
+          prediction: "You are going to find something you lost weeks ago.",
+          explanation: "What this means: Look under the sofa or behind your desk! An important missing item like keys or earphones will suddenly appear safely.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "run out of battery",
+          prediction: "Your phone battery is going to die at the worst possible moment.",
+          explanation: "What this means: Just as you need to check a bus timetable or text your parents, your phone screen will turn black. Bring your charger!",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/><line x1="6" y1="6" x2="14" y2="18"/></svg>`
+        },
+        {
+          type: "positive",
+          keyphrase: "eat a comfort meal",
+          prediction: "Someone is going to cook your favourite comfort meal tonight.",
+          explanation: "What this means: You will come home tired and hungry to the smell of warm, delicious home cooking waiting on the kitchen table.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>`
+        },
+        {
+          type: "negative",
+          keyphrase: "spill your drink",
+          prediction: "You are going to spill hot soup or coffee on your clean clothes.",
+          explanation: "What this means: A clumsy sudden movement will leave a dark stain on your favourite shirt or jumper right before you go out.",
+          icon: `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6"/><path d="m4.93 10.93 4.24-4.24"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>`
+        }
+      ]
+    }
+  ];
+
+  // --- STATE ---
+  let currentCategory = CATEGORIES[0];
+  let dealtCards = [];
+  let isRoleASpeaking = true;
+
+  // --- INIT ---
+  function initApp() {
+    renderCategoryGrid();
+    setupTopic(CATEGORIES[0]);
+
+    document.getElementById('reset-all-btn').addEventListener('click', () => {
+      const nextIdx = (CATEGORIES.findIndex(c => c.id === currentCategory.id) + 1) % CATEGORIES.length;
+      setupTopic(CATEGORIES[nextIdx]);
+    });
+  }
+
+  // --- RENDER CATEGORY PILLS ---
+  function renderCategoryGrid() {
+    const grid = document.getElementById('category-grid');
+    grid.innerHTML = '';
+
+    CATEGORIES.forEach((cat) => {
+      const btn = document.createElement('button');
+      btn.className = `cat-btn ${cat.id === currentCategory.id ? 'active' : ''}`;
+      btn.id = `cat-btn-${cat.id}`;
+      btn.innerHTML = `
+        <div class="cat-icon-wrap">${cat.svg}</div>
+        <span>${cat.name}</span>
+      `;
+      btn.onclick = () => setupTopic(cat);
+      grid.appendChild(btn);
+    });
+  }
+
+  // --- SETUP SELECTED TOPIC & DEAL 3 BALANCED CARDS ---
+  function setupTopic(cat) {
+    currentCategory = cat;
+
+    // Highlight active category
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    const activeBtn = document.getElementById(`cat-btn-${cat.id}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    document.getElementById('current-category-name').textContent = `Topic: ${cat.name}`;
+
+    // Randomize cards from chosen category
+    const shuffled = [...cat.cards].sort(() => 0.5 - Math.random());
+    dealtCards = shuffled.slice(0, 3);
+
+    // Populate each card slot
+    const slotDescriptions = ["Card 1: Present Situation", "Card 2: The Near Future", "Card 3: The Big Destiny"];
+
+    for (let i = 0; i < 3; i++) {
+      const cardEl = document.getElementById(`card-${i}`);
+      cardEl.classList.remove('flipped');
+
+      const frontEl = document.getElementById(`front-${i}`);
+      const data = dealtCards[i];
+      const isPos = data.type === "positive";
+
+      frontEl.className = `card-face card-front ${isPos ? 'tone-positive' : 'tone-negative'}`;
+      frontEl.innerHTML = `
+        <div>
+          <div class="front-header">
+            <span class="step-tag">${slotDescriptions[i]}</span>
+            <span class="tone-badge ${isPos ? 'badge-positive' : 'badge-negative'}">
+              ${isPos ? '✨ Lucky' : '⚠️ Warning'}
+            </span>
+          </div>
+
+          <div class="icon-hero ${isPos ? 'positive' : 'negative'}">
+            ${data.icon}
+          </div>
+
+          <div class="card-keyphrase">"${data.keyphrase}"</div>
+
+          <div class="prediction-bubble ${isPos ? 'positive' : 'negative'}">
+            ${data.prediction}
+          </div>
+
+          <!-- Explanation provided every time for pairwork communication[cite: 1] -->
+          <div class="explanation-box">
+            <div class="explanation-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              ${isPos ? 'Why this is good fortune:' : 'Madame Yolanda’s Warning:'}
+            </div>
+            <div>${data.explanation}</div>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button class="speech-btn" onclick="event.stopPropagation(); speakPrediction('${escapeQuotes(data.prediction)}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            Pronounce
+          </button>
+          <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 600;">English File 10C</span>
+        </div>
+      `;
+    }
+  }
+
+  // --- CARD FLIPPING & ACTIONS ---
+  function flipCard(index) {
+    const cardEl = document.getElementById(`card-${index}`);
+    if (!cardEl.classList.contains('flipped')) {
+      cardEl.classList.add('flipped');
+    }
+  }
+
+  function revealAllCards() {
+    for (let i = 0; i < 3; i++) {
+      document.getElementById(`card-${i}`).classList.add('flipped');
+    }
+  }
+
+  function redealCurrentTopic() {
+    setupTopic(currentCategory);
+  }
+
+  // --- ROLE SWAPPER ---
+  function swapRoleGuide() {
+    isRoleASpeaking = !isRoleASpeaking;
+    const labelA = document.getElementById('role-a-label');
+    const labelB = document.getElementById('role-b-label');
+
+    if (isRoleASpeaking) {
+      labelA.textContent = "Student A: Madame Yolanda (Fortune Teller)";
+      labelB.textContent = "Student B: The Seeker";
+    } else {
+      labelA.textContent = "Student B: Madame Yolanda (Fortune Teller)";
+      labelB.textContent = "Student A: The Seeker";
+    }
+  }
+
+  // --- NATIVE TEXT-TO-SPEECH API[cite: 2] ---
+  function speakPrediction(text) {
+    if (!('speechSynthesis' in window)) {
+      alert("Web speech synthesis is not supported on your browser.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-GB';
+    utterance.rate = 0.88; // Comfortable pace for A1+/A2- learners[cite: 3]
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function escapeQuotes(str) {
+    return str.replace(/'/g, "\\'");
+  }
+
+  // Start app
+  document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>
